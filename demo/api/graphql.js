@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require("apollo-server-lambda");
+const { ApolloServer, gql } = require("apollo-server-micro");
 
 const { createClient } = require("@supabase/supabase-js");
 
@@ -245,21 +245,21 @@ const server = new ApolloServer({
 //     }
 //   },
 
-  context:({event,context})=>({
-      headers: event.headers,
-      functionName:context.functionName,
-      event,
-      context
-  })
+//   context:({event,context})=>({
+//       headers: event.headers,
+//       functionName:context.functionName,
+//       event,
+//       context
+//   })
 });
 
 
 exports.handler=server.createHandler({
     path:'/api/graphql',
-    cors:{
-        origin:'*',
-        credentials:true,
-    }
+    // cors:{
+    //     origin:'*',
+    //     credentials:true,
+    // }
 })
 
 export const config={
